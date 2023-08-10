@@ -1,0 +1,15 @@
+.body1{
+    display: flex;
+    flex-direction: row;
+    margin:1rem;
+}
+.problemDefinition{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+.codingArena{
+    height:50vh;
+    width:50vw;
+}
