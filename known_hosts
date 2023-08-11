@@ -1,6 +1,5 @@
-ec2-3-85-104-162.compute-1.amazonaws.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCm1QcVLDNsGw4WGZw2eUyndxHEd/z2ifDkydCg1FEEx/BBTHtCNtoA8WiwHL1Ec8jV3jSt0Ff6TEuKXhVs7UrV/QE1qeiZMPj4mcaPzNsznkC9d4zLoHbLt3Do0vVFc8leAKnv9fNqiU0OrtdlkEgfHzMPhyYDWPFouK4DrGKV91k+d+8ZSOfy8I1C2Xx+hFetrIyTNpjngwv8cyokW3VtjlW5ejotAF9KeNa27ntaI2wjORW38o0Q6hJPsAbDt9QTKZF7Pm62PJ5KGvnY9GUBp6b8tHWt6owrXqJQk6tIbpvFzyYPRujdIld7s+xpikwhxNU18yin2VEBTeHhWsCNP1Lio5kxRm8b+yeuora6C11T4Cu/Fgyf3gznnQK8nI/hIMSIxetY2yAnQAwvsuBQhBIGiL8uE5DbX8GLxP7JFvC/+JZGZIr+0HFPkqBEKmDx+2JibG94pIKQF+yiDNH+2OL6xDn7OV/rtoa6Uk3BaJTFHRA4+py4e1z0rxo0Ohs=
-ec2-3-85-104-162.compute-1.amazonaws.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHM/l73HqaLq7CDGGpSZp8xrncGXWcv94k3rfylzwWtmRkSowrhqvpc3yiEoXN5o65bBg9TFjsb4X7BfFpoQTn0=
-ec2-3-85-104-162.compute-1.amazonaws.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINz6zeq3O44Rj2X6D/5GE0r95X5uPrRdP1IQEdrDE/Ye
-ec2-3-85-104-162.compute-1.amazonaws.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCm1QcVLDNsGw4WGZw2eUyndxHEd/z2ifDkydCg1FEEx/BBTHtCNtoA8WiwHL1Ec8jV3jSt0Ff6TEuKXhVs7UrV/QE1qeiZMPj4mcaPzNsznkC9d4zLoHbLt3Do0vVFc8leAKnv9fNqiU0OrtdlkEgfHzMPhyYDWPFouK4DrGKV91k+d+8ZSOfy8I1C2Xx+hFetrIyTNpjngwv8cyokW3VtjlW5ejotAF9KeNa27ntaI2wjORW38o0Q6hJPsAbDt9QTKZF7Pm62PJ5KGvnY9GUBp6b8tHWt6owrXqJQk6tIbpvFzyYPRujdIld7s+xpikwhxNU18yin2VEBTeHhWsCNP1Lio5kxRm8b+yeuora6C11T4Cu/Fgyf3gznnQK8nI/hIMSIxetY2yAnQAwvsuBQhBIGiL8uE5DbX8GLxP7JFvC/+JZGZIr+0HFPkqBEKmDx+2JibG94pIKQF+yiDNH+2OL6xDn7OV/rtoa6Uk3BaJTFHRA4+py4e1z0rxo0Ohs=
-ec2-3-85-104-162.compute-1.amazonaws.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHM/l73HqaLq7CDGGpSZp8xrncGXWcv94k3rfylzwWtmRkSowrhqvpc3yiEoXN5o65bBg9TFjsb4X7BfFpoQTn0=
-ec2-3-85-104-162.compute-1.amazonaws.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINz6zeq3O44Rj2X6D/5GE0r95X5uPrRdP1IQEdrDE/Ye
+ec2-44-204-78-168.compute-1.amazonaws.com:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+ec2-44-204-78-168.compute-1.amazonaws.com:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+ec2-44-204-78-168.compute-1.amazonaws.com:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+ec2-44-204-78-168.compute-1.amazonaws.com:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+ec2-44-204-78-168.compute-1.amazonaws.com:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
