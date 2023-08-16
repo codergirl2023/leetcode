@@ -19,10 +19,6 @@ const UserSchema = new mongoose_1.default.Schema({
     },
     fullName: {
         type: String
-    },
-    age: {
-        type: Number,
-        default: 0,
     }
 });
 exports.User = mongoose_1.default.model("User", UserSchema);
@@ -38,11 +34,13 @@ function connectToDB(tableName) {
 exports.connectToDB = connectToDB;
 function searchRecord(query) {
     connectToDB("users");
-    return exports.User.find(query);
+    const user = exports.User.find(query);
+    return user;
 }
 exports.searchRecord = searchRecord;
 function createRecord(newRecord) {
     connectToDB("users");
     exports.User.insertMany(newRecord);
+    // mongoose.connection.close();
 }
 exports.createRecord = createRecord;

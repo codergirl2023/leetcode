@@ -14,12 +14,11 @@ router.post('/signup', async (req, res) => {
     try {
         const email = req.body.email;
         const password = req.body.password;
-        const age = req.body.age;
         const fullName = req.body.fullName;
 
         const user = await searchRecord({ email });
         if (user.length) {
-            return res.status(403).send({ 'msg': 'Username already exists in our database, please try some other username' });
+            return res.status(403).send({ 'message': 'Username already exists in our database, please try some other username' });
         }
 
         const token = jwt.sign(
@@ -27,7 +26,7 @@ router.post('/signup', async (req, res) => {
             SECRET,
             { expiresIn: "1h" }
         );
-        const userRecord: IUser = { fullName, age, email, password };
+        const userRecord: IUser = { fullName, email, password };
         createRecord(userRecord);
         res.status(200).send({ 'message': 'User created successfully', 'jwtToken': token });
     } catch (error) {
@@ -44,7 +43,7 @@ router.post('/login', async (req, res) => {
     const password = req.headers.password;
     const user = await searchRecord({ email, password });
     if (!user.length) {
-        return res.status(403).send({ 'msg': 'email or password is incorrect. Please try with correct email/password' });
+        return res.status(403).send({ 'msg': 'Email or Password is incorrect. Please try with correct email/password' });
     }
     const token = jwt.sign(
         { email, password },

@@ -50,11 +50,13 @@ export function connectToDB(tableName:string) {
 
 export function searchRecord( query:Object){
     connectToDB("problems");
-    return Problems.find(query);
+    const problem= Problems.find(query);
+    return problem;
 }
 
 export function createRecord( newRecord:IProblem){
     connectToDB("problems");
 
     Problems.insertMany(newRecord);
+
 }

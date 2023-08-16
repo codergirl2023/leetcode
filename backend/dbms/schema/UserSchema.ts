@@ -15,10 +15,6 @@ const UserSchema = new mongoose.Schema({
     },
     fullName:{
         type: String
-    },
-    age: {
-        type: Number,
-        default: 0,
     }
 });
 
@@ -36,11 +32,13 @@ export function connectToDB(tableName:string) {
 
 export  function searchRecord( query:Object){
     connectToDB("users");
-    return User.find(query);
+    const user =  User.find(query);
+    return user;
 }
 
 export function createRecord( newRecord:IUser){
     connectToDB("users");
 
     User.insertMany(newRecord);
+    // mongoose.connection.close();
 }

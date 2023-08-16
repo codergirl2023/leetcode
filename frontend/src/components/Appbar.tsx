@@ -41,7 +41,7 @@ function Appbar() {
                         <Button
                             variant="contained"
                             onClick={() => {
-                                localStorage.setItem("token", "");
+                                localStorage.setItem("token",null);
                                 // Update the authState to indicate the user is not authenticated
                                 setAuth({
                                     isAuthenticated: false

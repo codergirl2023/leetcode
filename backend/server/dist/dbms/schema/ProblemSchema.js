@@ -51,7 +51,8 @@ function connectToDB(tableName) {
 exports.connectToDB = connectToDB;
 function searchRecord(query) {
     connectToDB("problems");
-    return exports.Problems.find(query);
+    const problem = exports.Problems.find(query);
+    return problem;
 }
 exports.searchRecord = searchRecord;
 function createRecord(newRecord) {

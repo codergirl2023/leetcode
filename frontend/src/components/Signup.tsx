@@ -2,7 +2,7 @@ import {useSetRecoilState} from "recoil";
 import {authState} from "../recoil/atoms/atom";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {Button, Link, TextField, Typography} from "@mui/material";
+import {Button, Link, TextField, Typography,Alert} from "@mui/material";
 import '../assets/static/Signup.css'
 import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios from "axios";
@@ -12,12 +12,17 @@ function Login() {
     const [password, setPassword] = useState(null);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [age, setAge] = useState(0);
-    let fullName = firstName + lastName;
+    const [fullName, setFullName] = useState("");
+    const [failMsg, setFailMsg] = useState(null);
     const navigate = useNavigate();
     const setAuth = useSetRecoilState(authState)
 
     return (
+        <>
+        <div className="authentication">
+            {failMsg && (<Alert variant="filled" severity="error">{failMsg}</Alert>)}
+
+        </div>
         <div className={"body"}>
             <div className={"signupContainer"}>
                 <div className={"logo"}>
@@ -50,11 +55,12 @@ function Login() {
                 </div>
 
                 <div className={"button"}>
-                   fullName = firstName+lastName;
                     <Button variant={"contained"} onClick={async () => {
                         try {
+                            setFullName(firstName+" " + lastName);
+
                             const response = await axios.post("http://localhost:3000/users/signup", {
-                                "fullName": fullName,
+                                fullName,
                                 email,
                                 password
                             }, {
@@ -69,8 +75,7 @@ function Login() {
                             });
                             navigate('/problemset/all');
                         } catch (error) {
-                            console.log(error);
-
+                            setFailMsg(error.response.data.message)
                         }
                     }} fullWidth>Sign Up</Button>
                 </div>
@@ -83,6 +88,7 @@ function Login() {
 
             </div>
         </div>
+        </>
     );
 }
 

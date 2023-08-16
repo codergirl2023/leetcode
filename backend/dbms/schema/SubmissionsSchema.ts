@@ -37,7 +37,9 @@ export function connectToDB(tableName:string) {
 
 export function searchRecord( query:Object){
     connectToDB("submissions");
-    return Submissions.find(query);
+    const submissions = Submissions.find(query);
+    // mongoose.connection.close()
+    return submissions;
 }
 
 export function createRecord( newRecord:ISubmission){

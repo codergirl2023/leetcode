@@ -4,11 +4,6 @@ interface IUser{
     email:string;
     password:string;
     fullName:string;
-    age:number;
-}
-
-interface IRequest extends Request{
-    user:IUser;
 }
 
  interface IProblem{
@@ -27,4 +22,4 @@ interface IRequest extends Request{
 }
 
 
-export {IUser, IRequest, ISubmission, IProblem};
+export {IUser, ISubmission, IProblem};

@@ -25,14 +25,13 @@ router.post('/signup', (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const email = req.body.email;
         const password = req.body.password;
-        const age = req.body.age;
         const fullName = req.body.fullName;
         const user = yield (0, UserSchema_1.searchRecord)({ email });
         if (user.length) {
-            return res.status(403).send({ 'msg': 'Username already exists in our database, please try some other username' });
+            return res.status(403).send({ 'message': 'Username already exists in our database, please try some other username' });
         }
         const token = jsonwebtoken_1.default.sign({ email, password }, SECRET, { expiresIn: "1h" });
-        const userRecord = { fullName, age, email, password };
+        const userRecord = { fullName, email, password };
         (0, UserSchema_1.createRecord)(userRecord);
         res.status(200).send({ 'message': 'User created successfully', 'jwtToken': token });
     }
@@ -49,7 +48,7 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const password = req.headers.password;
     const user = yield (0, UserSchema_1.searchRecord)({ email, password });
     if (!user.length) {
-        return res.status(403).send({ 'msg': 'email or password is incorrect. Please try with correct email/password' });
+        return res.status(403).send({ 'msg': 'Email or Password is incorrect. Please try with correct email/password' });
     }
     const token = jsonwebtoken_1.default.sign({ email, password }, SECRET, {
         expiresIn: "1h",
