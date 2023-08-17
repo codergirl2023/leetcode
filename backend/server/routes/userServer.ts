@@ -62,6 +62,7 @@ router.get('/all', authenticateJwt, async (req, res) => {
 });
 
 router.get('/me', authenticateJwt, (req, res) => {
+    
     if (req.headers['userId'] !== null){
          res.status(200).send({ email: req.headers['userId'] });
     }

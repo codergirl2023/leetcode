@@ -8,6 +8,8 @@
     flex-direction: column;
     width: 50vw;
     padding-right: 1rem;
+    overflow-y: scroll;
+
 }
 
 .codingArena{

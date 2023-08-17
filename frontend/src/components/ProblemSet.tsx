@@ -30,7 +30,7 @@ function ProblemSet() {
                 console.log("Error fetching problems:", error);
             });
     }, []);
-
+    console.log("auth ", localStorage.getItem('token'))
     return (
         <div>
             <CompanyWiseQuestionsList/>

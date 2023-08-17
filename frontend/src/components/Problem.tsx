@@ -39,7 +39,7 @@ export default function Problem() {
                     'http://localhost:3000/submissions/',
                     {
                         "code": solution,
-                        "problemId": problem._id,
+                        "problemTitle": problem.title,
                         "language": language,
                         "userId": user
                     },
@@ -57,17 +57,18 @@ export default function Problem() {
             console.log(error);
         }
     }
-    useEffect(() => {
-        axios.get("http://localhost:3000/users/me", {
-            headers: {
-                "authorization": "Bearer " + localStorage.getItem('token')
-            }
-        }).then((response) => {
-            setUser(response.data.email)
-        })
-    })
+    // useEffect(() => {
+    //     axios.get("http://localhost:3000/users/me", {
+    //         headers: {
+    //             "authorization": "Bearer " + localStorage.getItem('token')
+    //         }
+    //     }).then((response) => {
+    //         setUser(response.data.userId)
+    //     })
+    // })
 
     useEffect(() => {
+        console.log("auth token = ",localStorage.getItem('token'));
         axios
             .get("http://localhost:3000/problemset/" + problemId, {
                 headers: {
@@ -76,6 +77,7 @@ export default function Problem() {
             })
             .then((response) => {
                 setProblem(response.data[0]);
+                setUser(response.data.headers.userId);
             })
             .catch((error) => {
                 console.log(error);

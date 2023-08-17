@@ -1,18 +1,20 @@
 import { useSetRecoilState } from "recoil";
-import { authState } from "../recoil/atoms/atom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Link, TextField, Typography, Alert } from "@mui/material";
+import {userState} from "../recoil/atoms/user.ts";
 import '../assets/static/Login.css'
 import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios from "axios";
+
+
 function Login() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [failMsg, setFailMsg] = useState(null);
+    const setUser = useSetRecoilState(userState);
 
     const navigate = useNavigate();
-    const setAuth = useSetRecoilState(authState)
 
     return (
         <>
@@ -30,7 +32,7 @@ function Login() {
                         <Typography >Leetcode</Typography>
                     </div>
                     <div className={"textfield"}>
-                        <TextField required size={"small"} fullWidth variant={"outlined"} label={"Email"} onChange={(e) => { setEmail(e.target.value) }} />
+                        <TextField autoFocus={true} size={"small"} required={true} fullWidth variant={"outlined"} label={"Email"} onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
                     <div className={"textfield"}>
                         <TextField required size={"small"} fullWidth variant={"outlined"} label={"Password"} onChange={(e) => { setPassword(e.target.value) }} />
@@ -44,8 +46,9 @@ function Login() {
                                 }
                             }).then((response) => {
                                 localStorage.setItem('token', response.data.jwtToken);
-                                setAuth({
-                                    isAuthenticated: true
+                                setUser({
+                                    isLoading: false,
+                                    userEmail: response.data.userId
                                 })
                                 navigate('/problemSet/all')
 

@@ -1,5 +1,7 @@
 import dreamJob from "../assets/images/DreamJob.png";
 function Landing() {
+    console.log("auth token = ",localStorage.getItem('token'));
+
     return (
         <div style={{
             display: "flex",

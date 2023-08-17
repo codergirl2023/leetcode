@@ -1,18 +1,22 @@
-// Appbar.jsx
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import {Button, Link} from "@mui/material";
 import {Box} from "@mui/system";
-import {useRecoilState} from "recoil";
+import {useRecoilValue, useSetRecoilState} from "recoil";
 import {useNavigate} from "react-router-dom";
-import {authState} from "../recoil/atoms/atom.ts";
+import {userState} from "../recoil/atoms/user.ts";
+import {isUserLoading} from "../recoil/selectors/isUserLoading.ts";
+import {userEmailState} from "../recoil/selectors/userEmail.ts";
 import leetcodeLogo from "../assets/images/leetcodeLogo.png";
 
 function Appbar() {
-    const [auth, setAuth] = useRecoilState(authState); // Get the Recoil setter function directly
-
+    const userLoading = useRecoilValue(isUserLoading);
+    const userEmail = useRecoilValue(userEmailState);
+    const setUser = useSetRecoilState(userState);
     const navigate = useNavigate();
-
+    if (userLoading) {
+        return <></>
+    }
     return (
         <AppBar position={"fixed"} color={"transparent"}>
             <Toolbar style={{justifyContent: "space-between"}}>
@@ -23,7 +27,7 @@ function Appbar() {
                         Leetcode
                     </Link>
                 </div>
-                {   !auth.isAuthenticated ?(
+                {   (userEmail===null) ?(
                         <Box sx={{display: "flex", justifyContent: "flex-end", gap: "25px"}}>
                             <Button variant="contained" onClick={() => navigate("/signup")}>
                                 Sign Up
@@ -41,10 +45,11 @@ function Appbar() {
                         <Button
                             variant="contained"
                             onClick={() => {
-                                localStorage.setItem("token",null);
+                                localStorage.setItem("token","");
                                 // Update the authState to indicate the user is not authenticated
-                                setAuth({
-                                    isAuthenticated: false
+                                setUser({
+                                    isLoading: false,
+                                    userEmail: null
                                 });
                                 navigate("/");
                             }}
