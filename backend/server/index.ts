@@ -11,7 +11,7 @@ import path from 'path'
 const app = express();
 
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 
 const port = process.env.PORT;
 connectToDB();
