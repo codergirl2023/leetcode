@@ -57,18 +57,9 @@ export default function Problem() {
             console.log(error);
         }
     }
-    // useEffect(() => {
-    //     axios.get("http://localhost:3000/users/me", {
-    //         headers: {
-    //             "authorization": "Bearer " + localStorage.getItem('token')
-    //         }
-    //     }).then((response) => {
-    //         setUser(response.data.userId)
-    //     })
-    // })
+ 
 
     useEffect(() => {
-        console.log("auth token = ",localStorage.getItem('token'));
         axios
             .get("http://localhost:3000/problemset/" + problemId, {
                 headers: {
@@ -183,7 +174,7 @@ export default function Problem() {
                     <TextField multiline placeholder={"Enter your solution"} margin={"dense"} fullWidth={true} onChange={(e) => { setSolution(e.target.value) }} />
                 </div>
                 <div>
-                    <Button margin={"dense"} variant={"contained"} fullWidth onClick={onSubmit}
+                    <Button variant={"contained"} fullWidth onClick={onSubmit}
                     >Submit</Button>
                 </div>
                 <div></div>
