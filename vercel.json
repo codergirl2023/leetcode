@@ -1,5 +1,5 @@
 {
     "rewrites":  [
-        {"source": "/(problemSet/.*)", "destination": "/"}
+        {"source": "/.*)", "destination": "/"}
      ]
  }
