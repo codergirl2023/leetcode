@@ -1,17 +1,38 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Alert, Button, InputLabel, MenuItem, Select, TextField, Typography, Snackbar, SnackbarOrigin } from "@mui/material";
+import { Alert, Button, InputLabel, MenuItem, Select, TextField, Typography, Snackbar } from "@mui/material";
 import '../assets/static/Problem.css'
+import {IProblem, State, exampleArr} from '../types/type';
 
-interface State extends SnackbarOrigin {
-    open: boolean;
-}
-
+/**
+ * 
+ * Sample response of /problemset/id->[
+    {
+        "_id": "64bff4d02e0034b5e491263e",
+        "title": "Product of Array Except Self",
+        "description": "Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].\nThe product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.\nYou must write an algorithm that runs in O(n) time and without using the division operation.",
+        "examples": "[{\"example1\":{\"input\":\"nums = [1,2,3,4]\",\"output\":\"[24,12,8,6]\"}},{\"example2\":{\"input\":\"nums = [1,2,3,4]\",\"output\":\"[24,12,8,6]\"}}]",
+        "acceptance": "65.1%",
+        "difficulty": "Medium",
+        "__v": 0
+    }
+]
+ */
 export default function Problem() {
+    const initialProblemState: IProblem = {
+        // Initialize with default values as needed
+        _id:"",
+        title: "",
+        description: "",
+        examples: "", // Initialize examples with an empty array
+        acceptance: "",
+        difficulty: "",
+    };
+
     const { problemId } = useParams();
-    const [problem, setProblem] = useState([]);
-    const [language, setLanguage] = useState(1)
+    const [problem, setProblem] = useState<IProblem>(initialProblemState);
+    const [language, setLanguage] = useState("1")
     const [solution, setSolution] = useState("")
     const [solutionAccepted, setSolutionAccepted] = useState(0);
     const [state, setState] = useState<State>({
@@ -20,14 +41,26 @@ export default function Problem() {
         horizontal: 'center',
     });
     const { vertical, horizontal } = state;
-
+    useEffect(() => {
+        axios
+            .get("http://localhost:3000/problemset/" + problemId, {
+                headers: {
+                    "authorization": "Bearer " + localStorage.getItem("token"),
+                },
+            })
+            .then((response) => {
+                setProblem(response.data[0]);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
     const handleClose = () => {
         setState({ ...state, open: false });
     };
 
-
-    let examples = "";
+    let examples: exampleArr = { examples: [] };
     async function onSubmit() {
         try {
             const acceptanceProbability = Math.random();
@@ -56,30 +89,14 @@ export default function Problem() {
             console.log(error);
         }
     }
- 
 
-    useEffect(() => {
-        axios
-            .get("http://localhost:3000/problemset/" + problemId, {
-                headers: {
-                    "authorization": "Bearer " + localStorage.getItem("token"),
-                },
-            })
-            .then((response) => {
-                setProblem(response.data[0]);
-                console.log(response.data)
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
-
-    if (Object.keys(problem).length > 0 && Object.keys(problem.examples).length > 0) {
+    if (Object.keys(problem).length > 0 && problem.examples) {
         examples = JSON.parse(problem.examples);
     }
+    
 
     return (
-        <div className={"body1"}>
+        <div className={"bodyProblem"}>
 
             <div className={"problemDefinition"}>
                 <div >
@@ -93,18 +110,18 @@ export default function Problem() {
                 </div>
                 <div>
                     {examples &&
-                        Object.values(examples).map((example, index) => {
-                            const exp = Object.values(example)[0];
+                        Object.values(examples).map((exp, index) => {
+                            const example = Object.values(exp)[0];
                             let input, output, explanation;
-                            if (exp.input !== undefined) {
-                                input = exp.input;
-                            }
-                            if (exp.output !== undefined) {
-                                output = exp.output;
-                            }
-                            if (exp.explanation !== undefined) {
-                                explanation = exp.explanation;
-                            }
+                            
+                                input = example?.input;
+                            
+                            
+                                output = example?.output;
+                            
+                            
+                                explanation = example?.explanation;
+                            
                             return (
                                 <div key={index}>
                                     <Typography variant="button">Example {index + 1}</Typography>
@@ -132,7 +149,7 @@ export default function Problem() {
             <div className={"codingArena"}>
                 <div className={"solutionAccepted"}>
                     <Snackbar
-                        
+
                         anchorOrigin={{ vertical, horizontal }}
                         open={solutionAccepted === 1 || solutionAccepted === 2} // Set open to true when conditions are met
                         onClose={handleClose}
@@ -159,14 +176,14 @@ export default function Problem() {
                             setLanguage(e.target.value);
                         }}
                     >
-                        <MenuItem value={1}>C++</MenuItem>
-                        <MenuItem value={2}>Java</MenuItem>
-                        <MenuItem value={3}>JavaScript</MenuItem>
-                        <MenuItem value={4}>Python</MenuItem>
-                        <MenuItem value={5}>Scala</MenuItem>
-                        <MenuItem value={6}>GoLang</MenuItem>
-                        <MenuItem value={7}>C</MenuItem>
-                        <MenuItem value={8}>TypeScript</MenuItem>
+                        <MenuItem value={"1"}>C++</MenuItem>
+                        <MenuItem value={"2"}>Java</MenuItem>
+                        <MenuItem value={"3"}>JavaScript</MenuItem>
+                        <MenuItem value={"4"}>Python</MenuItem>
+                        <MenuItem value={"5"}>Scala</MenuItem>
+                        <MenuItem value={"6"}>GoLang</MenuItem>
+                        <MenuItem value={"7"}>C</MenuItem>
+                        <MenuItem value={"8"}>TypeScript</MenuItem>
                     </Select>
                 </div>
                 <div>

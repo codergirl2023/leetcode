@@ -13,19 +13,15 @@ import {
     TableRow
 } from "@mui/material";
 import CompanyWiseQuestionsList from './CompanyWiseQuestionsList.js'
+import '../assets/static/ProblemSet.css';
+import { IProblem } from "../types/type.js";
 
-type problem={
-    _id:string;
-    title:string;
-    description:string;
-    acceptance:string;
-    difficulty:string;
+interface problemSet extends Array<IProblem>{
+    problem?:IProblem[]
 }
-interface problemSet extends Array<problem>{
-    problem:problem[]
-}
+
 function ProblemSet() {
-    const [problems, setProblems] = useState([]);
+    const [problems, setProblems] = useState<problemSet>([]);
     useEffect(() => {
         axios
             .get("http://localhost:3000/problemset/all", {
@@ -55,14 +51,15 @@ function TableComp({problems}:{problems:problemSet}) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const handleChangePage = (newPage) => {
+    const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -70,9 +67,9 @@ function TableComp({problems}:{problems:problemSet}) {
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            {columnsHeaderRow.map((columnHeader) => (
-                                <TableCell>
-                                    {columnHeader}
+                            {columnsHeaderRow.map((columnHeader, index) => (
+                                <TableCell key={index}>
+                                    {columnHeader}  
                                 </TableCell>
                             ))}
                         </TableRow>

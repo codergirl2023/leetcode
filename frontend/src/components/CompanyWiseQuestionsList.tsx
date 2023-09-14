@@ -14,8 +14,8 @@ export default function CompanyWiseQuestionsList() {
     return (
         <div style={{ display: "flex", marginTop: "100px", justifyContent: "space-evenly" }}>
             <Grid container spacing={2}>
-                {companies.map((company) => {
-                    return (<CardComp company={company} key={company} />);
+                {companies.map((company,index) => {
+                    return (<CardComp company={company} key={index} />);
                 })}
             </Grid>
         </div>

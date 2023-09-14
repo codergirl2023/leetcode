@@ -21,7 +21,8 @@ function Login() {
                 {failMsg && (<Alert variant="filled" severity="error">{failMsg}</Alert>)}
 
             </div>
-            <div className={"body"}>
+            <div className="bodyComplete">
+            <div className={"bodyLogin"}>
 
                 <div className={"loginContainer"} >
                     <div className={"logo"}>
@@ -68,10 +69,8 @@ function Login() {
 
                 </div>
             </div>
+            </div>
         </>
-        // <div>
-        //     <h1>hello world!</h1>
-        // </div>
     );
 }
 

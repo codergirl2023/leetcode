@@ -1,19 +1,25 @@
-.body{
+html{
+    background-color: #E8E8E8;
+}
+.bodyLogin{
     background-color: #E8E8E8;
     width: 100%;
-    height: calc(100vh - 60px);
+    height: 100%;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
+    height: auto;
+    padding-top: 160px;
 }
 .loginContainer{
     display: flex;
     flex-direction: column;
     border: 2px solid transparent;
-    width: 25rem;
-    height: 30rem;
     align-items: center;
     background-color:white;
+    padding: 50px;
+    
 }
 .logo{
     margin-top: 10px;
@@ -30,7 +36,4 @@
     margin-top: 1.5rem;
     width: 100%;
     justify-content: space-around;
-}
-@media (max-width: 348px) {
-    
 }

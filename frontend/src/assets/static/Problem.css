@@ -1,4 +1,4 @@
-.body1{
+.bodyProblem{
     display: flex;
     flex-direction: row;
     margin:1rem;
@@ -9,7 +9,6 @@
     width: 50vw;
     padding-right: 1rem;
     overflow-y: scroll;
-
 }
 
 .codingArena{

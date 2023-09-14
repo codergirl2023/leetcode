@@ -1,6 +1,5 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-
 import {
     Link, useMediaQuery,
     createTheme
@@ -10,12 +9,10 @@ import DrawerSmallScreenComponent from "./DrawerComponent.tsx";
 import AppbarComponent from "./AppbarComponent.tsx";
 
 function Navbar() {
-
     const theme = createTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
-
-        <AppBar position="fixed" color="transparent">
+        <AppBar position="fixed" color="inherit">
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <Link href="/">
@@ -35,8 +32,6 @@ function Navbar() {
                     </Link>
                 </div>
                 {isMobile ? (<DrawerSmallScreenComponent />) : (<AppbarComponent />)}
-
-
             </Toolbar>
         </AppBar>
     );

@@ -21,10 +21,10 @@ const authenticateJwt = (req, res, next) => {
             }
             req.headers["userId"] = payload.email;
         });
+        return next();
     }
     else {
-        return res.status(403).send("A token is required for authentication");
+        return res.status(403).json({ "message": "A token is required for authentication" });
     }
-    return next();
 };
 exports.authenticateJwt = authenticateJwt;
