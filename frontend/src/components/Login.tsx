@@ -3,14 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Link, TextField, Typography, Alert } from "@mui/material";
 import {userState} from "../recoil/atoms/user.ts";
-import '../assets/static/Login.css'
 import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios from "axios";
-
+import '../assets/static/Login.css'
 
 function Login() {
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [failMsg, setFailMsg] = useState(null);
     const setUser = useSetRecoilState(userState);
 
@@ -24,7 +23,7 @@ function Login() {
             </div>
             <div className={"body"}>
 
-                <div className={"loginContainer"}>
+                <div className={"loginContainer"} >
                     <div className={"logo"}>
                         <img src={leetcodeLogo} alt={"logo"} />
                     </div>
@@ -37,7 +36,7 @@ function Login() {
                     <div className={"textfield"}>
                         <TextField required size={"small"} fullWidth variant={"outlined"} label={"Password"} onChange={(e) => { setPassword(e.target.value) }} />
                     </div>
-                    <div className={"button"}>
+                    <div className={"loginButton"}>
                         <Button variant={"contained"} fullWidth onClick={() => {
                             axios.post('http://localhost:3000/users/login', {}, {
                                 headers: {
@@ -70,6 +69,9 @@ function Login() {
                 </div>
             </div>
         </>
+        // <div>
+        //     <h1>hello world!</h1>
+        // </div>
     );
 }
 

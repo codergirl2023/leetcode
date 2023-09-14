@@ -11,7 +11,7 @@ export default function NotFoundPage(){
         <Link to="/">
           Go to home
         </Link>
-        <img  style={{width:"100vw"}}src={PageNotFound} alt="page not found"/> 
+        <img  style={{padding:0,maxWidth:'100%',margin:'0',height:'auto'}} src={PageNotFound} alt="page not found"/> 
          
         
       </div>

@@ -13,7 +13,6 @@ export default function Problem() {
     const [problem, setProblem] = useState([]);
     const [language, setLanguage] = useState(1)
     const [solution, setSolution] = useState("")
-    const [user, setUser] = useState("")
     const [solutionAccepted, setSolutionAccepted] = useState(0);
     const [state, setState] = useState<State>({
         open: false,
@@ -68,7 +67,7 @@ export default function Problem() {
             })
             .then((response) => {
                 setProblem(response.data[0]);
-                setUser(response.data.headers.userId);
+                console.log(response.data)
             })
             .catch((error) => {
                 console.log(error);

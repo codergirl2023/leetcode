@@ -14,6 +14,16 @@ import {
 } from "@mui/material";
 import CompanyWiseQuestionsList from './CompanyWiseQuestionsList.js'
 
+type problem={
+    _id:string;
+    title:string;
+    description:string;
+    acceptance:string;
+    difficulty:string;
+}
+interface problemSet extends Array<problem>{
+    problem:problem[]
+}
 function ProblemSet() {
     const [problems, setProblems] = useState([]);
     useEffect(() => {
@@ -30,23 +40,22 @@ function ProblemSet() {
                 console.log("Error fetching problems:", error);
             });
     }, []);
-    console.log("auth ", localStorage.getItem('token'))
     return (
         <div>
             <CompanyWiseQuestionsList/>
             <div style={{display:"flex", marginTop:"5rem"}}>
-                <TableComp problems={problems}/>
+                <TableComp problems={problems} />
             </div>
         </div>
     );
 }
 const columnsHeaderRow = ["Title", "Difficulty", "Acceptance"]
 
-function TableComp({problems}) {
+function TableComp({problems}:{problems:problemSet}) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (newPage) => {
         setPage(newPage);
     };
 

@@ -1,19 +1,17 @@
 import dreamJob from "../assets/images/DreamJob.png";
 function Landing() {
-    console.log("auth token = ",localStorage.getItem('token'));
 
     return (
-        <div style={{
-            display: "flex",
-            width: "100%",
-            position: "fixed",
-
+        <div className="landingContainer" style={{
+            display: "flex"
+         
         }}>
-            <img style={{flex: 1}}
+            <img style={{position:'fixed', padding:0,width:'100%',margin:'0',height:'auto'}}
                  src={dreamJob}
                  alt='get dream job'
 
             />
+            
         </div>
     )
 }

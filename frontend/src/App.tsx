@@ -1,4 +1,4 @@
-import Appbar from "./components/Appbar.tsx";
+import Navbar from "./components/Navbar.tsx";
 import {Route, Routes} from "react-router-dom";
 import Login from "./components/Login"
 import Signup from "./components/Signup.tsx";
@@ -13,7 +13,7 @@ function App() {
 
     return (
         <>
-            <Appbar/>
+            <Navbar/>
             <InitUser />
             <Routes>
                 <Route path="/" element={<Landing/>}/>
