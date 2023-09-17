@@ -67,21 +67,21 @@ export default function Problem() {
             if (acceptanceProbability > 0.5) {
                 setSolutionAccepted(1);
 
-                await axios.post(
-                    'http://localhost:3000/submissions/',
-                    {
-                        "code": solution,
-                        "problemTitle": problem.title,
-                        "language": language,
-                        "userId": user
-                    },
-                    {
-                        headers: {
-                            "authorization": "Bearer " + localStorage.getItem('token'), // Use "Authorization" key
-                            "Content-Type": "application/json" // Use "Content-Type" key
-                        }
-                    }
-                )
+                // await axios.post(
+                //     'http://localhost:3000/submissions/',
+                //     {
+                //         "code": solution,
+                //         "problemTitle": problem.title,
+                //         "language": language,
+                //         "userId": user
+                //     },
+                //     {
+                //         headers: {
+                //             "authorization": "Bearer " + localStorage.getItem('token'), // Use "Authorization" key
+                //             "Content-Type": "application/json" // Use "Content-Type" key
+                //         }
+                //     }
+                // )
             } else {
                 setSolutionAccepted(2);
             }
