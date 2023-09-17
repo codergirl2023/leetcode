@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Alert, Button, InputLabel, MenuItem, Select, TextField, Typography, Snackbar } from "@mui/material";
 import '../assets/static/Problem.css'
 import {IProblem, State, exampleArr} from '../types/type';
+import { useRecoilValue } from "recoil";
+import { userEmailState } from "../recoil/selectors/userEmail";
 
 /**
  * 
@@ -35,6 +37,8 @@ export default function Problem() {
     const [language, setLanguage] = useState("1")
     const [solution, setSolution] = useState("")
     const [solutionAccepted, setSolutionAccepted] = useState(0);
+    const userEmail = useRecoilValue(userEmailState);
+
     const [state, setState] = useState<State>({
         open: false,
         vertical: 'bottom',
@@ -67,21 +71,21 @@ export default function Problem() {
             if (acceptanceProbability > 0.5) {
                 setSolutionAccepted(1);
 
-                // await axios.post(
-                //     'http://localhost:3000/submissions/',
-                //     {
-                //         "code": solution,
-                //         "problemTitle": problem.title,
-                //         "language": language,
-                //         "userId": user
-                //     },
-                //     {
-                //         headers: {
-                //             "authorization": "Bearer " + localStorage.getItem('token'), // Use "Authorization" key
-                //             "Content-Type": "application/json" // Use "Content-Type" key
-                //         }
-                //     }
-                // )
+                await axios.post(
+                    'http://localhost:3000/submissions/',
+                    {
+                        "code": solution,
+                        "problemId": problem._id,
+                        "language": language,
+                        "userId": userEmail
+                    },
+                    {
+                        headers: {
+                            "authorization": "Bearer " + localStorage.getItem('token'), // Use "Authorization" key
+                            "Content-Type": "application/json" // Use "Content-Type" key
+                        }
+                    }
+                )
             } else {
                 setSolutionAccepted(2);
             }
