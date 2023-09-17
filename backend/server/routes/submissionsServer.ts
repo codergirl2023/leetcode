@@ -38,7 +38,10 @@ router.get('/problems/:problemId/all', authenticateJwt, async (req, res) => {
 router.post('/',authenticateJwt,async (req, res)=>{
     const userQuery = searchRecord(Users, { email: req.body.userId }).select("_id");  //getting the user id from user email provided in request body
     const user = await userQuery.exec();
+    const problemId = req.params.problemId;
+    const problem = await searchRecord({ problemId });
     req.body.userId = user[0];
+    req.body.problemId = problem[0]
     await createRecord(req.body)
     res.status(200).send({"msg":"Submitted successfully!"});
 })

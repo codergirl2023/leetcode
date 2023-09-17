@@ -46,7 +46,10 @@ router.get('/problems/:problemId/all', auth_1.authenticateJwt, (req, res) => __a
 router.post('/', auth_1.authenticateJwt, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userQuery = searchRecord(Users, { email: req.body.userId }).select("_id"); //getting the user id from user email provided in request body
     const user = yield userQuery.exec();
+    const problemId = req.params.problemId;
+    const problem = yield searchRecord({ problemId });
     req.body.userId = user[0];
+    req.body.problemId = problem[0];
     yield createRecord(req.body);
     res.status(200).send({ "msg": "Submitted successfully!" });
 }));
