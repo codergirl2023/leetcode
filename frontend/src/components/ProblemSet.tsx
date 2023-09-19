@@ -2,7 +2,7 @@ import axios from "axios";
 import React from 'react';
 import {useEffect, useState} from "react";
 import {
-    Link,
+   Link,
     Paper,
     Table,
     TableBody,
@@ -15,6 +15,7 @@ import {
 import CompanyWiseQuestionsList from './CompanyWiseQuestionsList.js'
 import '../assets/static/ProblemSet.css';
 import { IProblem } from "../types/type.js";
+import { Link as RouterLink } from 'react-router-dom'; 
 
 interface problemSet extends Array<IProblem>{
     problem?:IProblem[]
@@ -84,9 +85,9 @@ function TableComp({problems}:{problems:problemSet}) {
                                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                     >
                                         <TableCell component="th" scope="row">
-                                            console.log("id =", problem._id)
-                                            <Link href={problem._id}>{problem.title}</Link>
-                                        </TableCell>
+                                            
+                                        <Link component={RouterLink} to={`/problemSet/${problem._id}`}>{problem.title}</Link>
+                                     </TableCell>
                                         <TableCell>{problem.acceptance}</TableCell>
                                         <TableCell
                                             sx={{color: problem.difficulty === "Easy" ? "green" : problem.difficulty === "Medium" ? "orange" : "red"}}>{problem.difficulty}</TableCell>
