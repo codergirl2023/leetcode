@@ -84,7 +84,7 @@ function TableComp({problems}:{problems:problemSet}) {
                                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                                     >
                                         <TableCell component="th" scope="row">
-
+                                            console.log("id =", problem._id)
                                             <Link href={problem._id}>{problem.title}</Link>
                                         </TableCell>
                                         <TableCell>{problem.acceptance}</TableCell>

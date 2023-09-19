@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Typography,  } from "@mui/material";
+import { Typography, } from "@mui/material";
 import '../assets/static/Problem.css'
-import {IProblem, exampleArr} from '../types/type';
-
+import { IProblem, exampleArr } from '../types/type';
 import CodingArena from "./CodingArena";
 
 /**
@@ -24,7 +23,7 @@ import CodingArena from "./CodingArena";
 export default function Problem() {
     const initialProblemState: IProblem = {
         // Initialize with default values as needed
-        _id:"",
+        _id: "",
         title: "",
         description: "",
         examples: "", // Initialize examples with an empty array
@@ -35,7 +34,6 @@ export default function Problem() {
     const { problemId } = useParams();
     const [problem, setProblem] = useState<IProblem>(initialProblemState);
 
-   
     useEffect(() => {
         axios
             .get("http://localhost:3000/problemset/" + problemId, {
@@ -51,15 +49,12 @@ export default function Problem() {
             });
     }, []);
 
-   
-
     let examples: exampleArr = { examples: [] };
- 
 
     if (Object.keys(problem).length > 0 && problem.examples) {
         examples = JSON.parse(problem.examples);
     }
-    
+
 
     return (
         <div className={"bodyProblem"}>
@@ -79,15 +74,13 @@ export default function Problem() {
                         Object.values(examples).map((exp, index) => {
                             const example = Object.values(exp)[0];
                             let input, output, explanation;
-                            
-                                input = example?.input;
-                            
-                            
-                                output = example?.output;
-                            
-                            
-                                explanation = example?.explanation;
-                            
+
+                            input = example?.input;
+
+                            output = example?.output;
+
+                            explanation = example?.explanation;
+
                             return (
                                 <div key={index}>
                                     <Typography variant="button">Example {index + 1}</Typography>
@@ -112,7 +105,7 @@ export default function Problem() {
                         })}
                 </div>
             </div>
-            <CodingArena problem={problem}/>
+            <CodingArena problem={problem} />
         </div>
     );
 }
