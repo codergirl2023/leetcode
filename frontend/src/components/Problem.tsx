@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Alert, Button, InputLabel, MenuItem, Select, TextField, Typography, Snackbar } from "@mui/material";
+import { Typography,  } from "@mui/material";
 import '../assets/static/Problem.css'
-import {IProblem, State, exampleArr} from '../types/type';
-import { useRecoilValue } from "recoil";
-import { userEmailState } from "../recoil/selectors/userEmail";
+import {IProblem, exampleArr} from '../types/type';
+
+import CodingArena from "./CodingArena";
 
 /**
  * 
@@ -34,17 +34,8 @@ export default function Problem() {
 
     const { problemId } = useParams();
     const [problem, setProblem] = useState<IProblem>(initialProblemState);
-    const [language, setLanguage] = useState("1")
-    const [solution, setSolution] = useState("")
-    const [solutionAccepted, setSolutionAccepted] = useState(0);
-    const userEmail = useRecoilValue(userEmailState);
 
-    const [state, setState] = useState<State>({
-        open: false,
-        vertical: 'bottom',
-        horizontal: 'center',
-    });
-    const { vertical, horizontal } = state;
+   
     useEffect(() => {
         axios
             .get("http://localhost:3000/problemset/" + problemId, {
@@ -60,39 +51,10 @@ export default function Problem() {
             });
     }, []);
 
-    const handleClose = () => {
-        setState({ ...state, open: false });
-    };
+   
 
     let examples: exampleArr = { examples: [] };
-    async function onSubmit() {
-        try {
-            const acceptanceProbability = Math.random();
-            if (acceptanceProbability > 0.5) {
-                setSolutionAccepted(1);
-
-                await axios.post(
-                    'http://localhost:3000/submissions/',
-                    {
-                        "code": solution,
-                        "problemId": problem._id,
-                        "language": language,
-                        "userId": userEmail
-                    },
-                    {
-                        headers: {
-                            "authorization": "Bearer " + localStorage.getItem('token'), // Use "Authorization" key
-                            "Content-Type": "application/json" // Use "Content-Type" key
-                        }
-                    }
-                )
-            } else {
-                setSolutionAccepted(2);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
+ 
 
     if (Object.keys(problem).length > 0 && problem.examples) {
         examples = JSON.parse(problem.examples);
@@ -150,55 +112,7 @@ export default function Problem() {
                         })}
                 </div>
             </div>
-            <div className={"codingArena"}>
-                <div className={"solutionAccepted"}>
-                    <Snackbar
-
-                        anchorOrigin={{ vertical, horizontal }}
-                        open={solutionAccepted === 1 || solutionAccepted === 2} // Set open to true when conditions are met
-                        onClose={handleClose}
-                        key={vertical + horizontal}
-
-                    >
-                        {solutionAccepted === 1 ? (
-                            <Alert severity="success">Solution Accepted!</Alert>
-                        ) : (
-                            <Alert severity="error">Solution Rejected!</Alert>
-                        )}
-                    </Snackbar>
-
-                </div>
-                <div>
-                    <InputLabel margin={"dense"}>Language</InputLabel>
-                    <Select
-                        id="language"
-                        value={language}
-                        label="Language"
-                        margin={"dense"}
-                        autoWidth
-                        onChange={(e) => {
-                            setLanguage(e.target.value);
-                        }}
-                    >
-                        <MenuItem value={"1"}>C++</MenuItem>
-                        <MenuItem value={"2"}>Java</MenuItem>
-                        <MenuItem value={"3"}>JavaScript</MenuItem>
-                        <MenuItem value={"4"}>Python</MenuItem>
-                        <MenuItem value={"5"}>Scala</MenuItem>
-                        <MenuItem value={"6"}>GoLang</MenuItem>
-                        <MenuItem value={"7"}>C</MenuItem>
-                        <MenuItem value={"8"}>TypeScript</MenuItem>
-                    </Select>
-                </div>
-                <div>
-                    <TextField multiline placeholder={"Enter your solution"} margin={"dense"} fullWidth={true} onChange={(e) => { setSolution(e.target.value) }} />
-                </div>
-                <div>
-                    <Button variant={"contained"} fullWidth onClick={onSubmit}
-                    >Submit</Button>
-                </div>
-                <div></div>
-            </div>
+            <CodingArena problem={problem}/>
         </div>
     );
 }
