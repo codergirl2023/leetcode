@@ -20,7 +20,7 @@ function App() {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path="/problemSet/all" element={<ProblemSet/>}/>
-                <Route path="/problemSet/:problemId" element={<Problem/>}/>
+                <Route path="/problemSet/64bff4d02e0034b5e491263e" element={<Problem/>}/>
                 <Route path="/companyWiseQuestions" element={<WIPPage/>}/>
                 <Route path="*" element={<NotFoundPage />} />
 
