@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "cd ../frontend && npm run build && rm -rf ../backend/public && mkdir -p ../backend/public && mv ./dist/* ../backend/public && cd ../backend/server && node dist/server/index.js"
+    "start": "node server/dist/server/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
