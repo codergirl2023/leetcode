@@ -18,9 +18,9 @@ app.use('/users', user);
 app.use('/problemset',problemSet);
 app.use('/submissions',submissions);
 
-app.use(express.static(path.join(__dirname, '../../../public')));
+app.use(express.static(path.join(__dirname, '../../public')));
 app.use("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, '../../../public/index.html'))
+    res.sendFile(path.join(__dirname, '../../public/index.html'))
 })
 
 app.use((req, res, next) => {

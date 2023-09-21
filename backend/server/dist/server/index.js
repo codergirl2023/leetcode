@@ -19,9 +19,9 @@ const port = process_1.default.env.PORT;
 app.use('/users', userServer_1.default);
 app.use('/problemset', problemSetServer_1.default);
 app.use('/submissions', submissionsServer_1.default);
-app.use(express_1.default.static(path_1.default.join(__dirname, '../../../public')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../../public')));
 app.use("/*", (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '../../../public/index.html'));
+    res.sendFile(path_1.default.join(__dirname, '../../public/index.html'));
 });
 app.use((req, res, next) => {
     console.log('Time:', Date.now());
