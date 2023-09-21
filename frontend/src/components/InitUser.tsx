@@ -3,7 +3,7 @@ import { useSetRecoilState } from "recoil";
 import axios from "axios";
 import { useEffect } from "react";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = window.location.origin;
 
 export function InitUser() {
     const setUser = useSetRecoilState(userState);   

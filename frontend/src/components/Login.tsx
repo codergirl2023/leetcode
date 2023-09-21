@@ -7,7 +7,7 @@ import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios from "axios";
 import '../assets/static/Login.css';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = window.location.origin;
 
 function Login() {
     const [email, setEmail] = useState("");

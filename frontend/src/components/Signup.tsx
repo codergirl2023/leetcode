@@ -6,7 +6,8 @@ import '../assets/static/Signup.css'
 import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios, { AxiosError } from "axios";
 import { userState } from "../recoil/atoms/user.ts";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+const BASE_URL = window.location.origin;
 
 function Login() {
     const [email, setEmail] = useState("");
