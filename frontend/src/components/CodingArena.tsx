@@ -5,6 +5,8 @@ import { useRecoilValue } from "recoil";
 import { Alert,Snackbar, Button, InputLabel, MenuItem, Select, TextField,} from '@mui/material';
 import { IProblem, State } from '../types/type';
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const CodingArena = ({ problem }:{problem:IProblem}) => {
   const userEmail = useRecoilValue(userEmailState);
   const [solutionAccepted, setSolutionAccepted] = useState(0);
@@ -27,7 +29,7 @@ const CodingArena = ({ problem }:{problem:IProblem}) => {
         setSolutionAccepted(1);
 
         await axios.post(
-          'http://localhost:3000/submissions/',
+          `${BASE_URL}/submissions/`,
           {
             "code": solution,
             "problemId": problem._id,

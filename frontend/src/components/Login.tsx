@@ -5,7 +5,9 @@ import { Button, Link, TextField, Typography, Alert } from "@mui/material";
 import {userState} from "../recoil/atoms/user.ts";
 import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios from "axios";
-import '../assets/static/Login.css'
+import '../assets/static/Login.css';
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -39,7 +41,7 @@ function Login() {
                     </div>
                     <div className={"loginButton"}>
                         <Button variant={"contained"} fullWidth onClick={() => {
-                            axios.post('http://localhost:3000/users/login', {}, {
+                            axios.post(`${BASE_URL}/users/login`, {}, {
                                 headers: {
                                     email: email,
                                     password: password

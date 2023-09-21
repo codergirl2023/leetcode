@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import process from 'process';
-import cors from 'cors';
 dotenv.config({path:'./.env'});
 import user from './routes/userServer';
 import problemSet from './routes/problemSetServer';
@@ -11,7 +10,6 @@ import path from 'path'
 const app = express();
 
 app.use(express.json());
-app.use(cors());
 
 const port = process.env.PORT;
 connectToDB();

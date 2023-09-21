@@ -17,6 +17,8 @@ import '../assets/static/ProblemSet.css';
 import { IProblem } from "../types/type.js";
 import { Link as RouterLink } from 'react-router-dom'; 
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 interface problemSet extends Array<IProblem>{
     problem?:IProblem[]
 }
@@ -25,12 +27,13 @@ function ProblemSet() {
     const [problems, setProblems] = useState<problemSet>([]);
     useEffect(() => {
         axios
-            .get("http://localhost:3000/problemset/all", {
+            .get(`${BASE_URL}/problemSet/all`, {
                 headers: {
                     'authorization': "Bearer " + localStorage.getItem('token')
                 }
             })
             .then((response) => {
+                console.log("problems =",response.data.problemSet)
                 setProblems(response.data.problemSet);
             })
             .catch((error) => {

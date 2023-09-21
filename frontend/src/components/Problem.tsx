@@ -5,6 +5,7 @@ import { Typography, } from "@mui/material";
 import '../assets/static/Problem.css'
 import { IProblem, exampleArr } from '../types/type';
 import CodingArena from "./CodingArena";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 /**
  * 
@@ -36,7 +37,7 @@ export default function Problem() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/problemset/" + problemId, {
+            .get(`${BASE_URL}/problemset/` + problemId, {
                 headers: {
                     "authorization": "Bearer " + localStorage.getItem("token"),
                 },

@@ -6,6 +6,7 @@ import '../assets/static/Signup.css'
 import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios, { AxiosError } from "axios";
 import { userState } from "../recoil/atoms/user.ts";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -61,7 +62,7 @@ function Login() {
                                 if (!fullName.length || !email.length || !password.length) {
                                     alert("All fields are mandatory");
                                 }
-                                const response = await axios.post("http://localhost:3000/users/signup", {
+                                const response = await axios.post(`${BASE_URL}/users/signup`, {
                                     fullName,
                                     email,
                                     password
