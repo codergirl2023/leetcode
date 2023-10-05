@@ -14,7 +14,7 @@ interface IUser{
     difficulty:string;
 }
 
- interface ISubmission{
+interface ISubmission{
     language:string;
     code:string;
     problemId?:mongoose.Schema.Types.ObjectId;

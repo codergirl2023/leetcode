@@ -6,9 +6,10 @@ import { useEffect } from "react";
 const BASE_URL = window.location.origin;
 
 export function InitUser() {
-    const setUser = useSetRecoilState(userState);   
-    const init = async() => {
+    const setUser = useSetRecoilState(userState);
+    const init = async () => {
         try {
+           
             const response = await axios.get(`${BASE_URL}/users/me`, {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -26,17 +27,17 @@ export function InitUser() {
                 })
             }
         } catch (e) {
-  
+
             setUser({
                 isLoading: false,
                 userEmail: null
             })
         }
     };
-  
+
     useEffect(() => {
         init();
     }, []);
-  
+
     return <></>
-  }
+}
