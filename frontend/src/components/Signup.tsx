@@ -7,7 +7,7 @@ import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios, { AxiosError } from "axios";
 import { userState } from "../recoil/atoms/user.ts";
 
-const BASE_URL = window.location.origin;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -16,6 +16,21 @@ function Login() {
     const [lastName, setLastName] = useState("");
     const [fullName, setFullName] = useState("");
     const [failMsg, setFailMsg] = useState<string | undefined>("");
+    var validEmailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const validateFields = () => {
+        let errorMsg = "";
+        const name = firstName + " " + lastName;
+        setFullName(name);
+        if (name.trim() === "" || email.trim() === "" || password.trim() === "") {
+            console.log("full name1 =", fullName, " ", email, " ", password);
+            errorMsg = "All fields are mandatory";
+        } else if (!email.match(validEmailFormat)) {
+            errorMsg = "Please enter a valid email address";
+        }
+
+        setFailMsg(errorMsg);
+        return errorMsg === ""; // Return true if there are no errors
+    };
     const navigate = useNavigate();
     const setUser = useSetRecoilState(userState);
 
@@ -50,7 +65,7 @@ function Login() {
                         }} margin={"dense"} />
                     </div>
                     <div className={"textfield"}>
-                        <TextField required size={"small"} fullWidth variant={"outlined"} label={"Password"}
+                        <TextField required size={"small"} fullWidth variant={"outlined"} type="password" label={"Password"} 
                             onChange={(e) => {
                                 setPassword(e.target.value)
                             }} margin={"dense"} />
@@ -59,9 +74,8 @@ function Login() {
                     <div className={"button"}>
                         <Button variant={"contained"} onClick={async () => {
                             try {
-                                setFullName(firstName + " " + lastName);
-                                if (!fullName.length || !email.length || !password.length) {
-                                    alert("All fields are mandatory");
+                                if (!validateFields()) {
+                                    return; // Exit if there are validation errors
                                 }
                                 const response = await axios.post(`${BASE_URL}/users/signup`, {
                                     fullName,

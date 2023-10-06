@@ -7,7 +7,7 @@ import leetcodeLogo from '../assets/images/leetcodeLogo.png'
 import axios from "axios";
 import '../assets/static/Login.css';
 
-const BASE_URL = window.location.origin;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -37,7 +37,7 @@ function Login() {
                         <TextField autoFocus={true} size={"small"} required={true} fullWidth variant={"outlined"} label={"Email"} onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
                     <div className={"textfield"}>
-                        <TextField required size={"small"} fullWidth variant={"outlined"} label={"Password"} onChange={(e) => { setPassword(e.target.value) }} />
+                        <TextField required size={"small"} fullWidth variant={"outlined"} label={"Password"} type="password" onChange={(e) => { setPassword(e.target.value) }} />
                     </div>
                     <div className={"loginButton"}>
                         <Button variant={"contained"} fullWidth onClick={() => {

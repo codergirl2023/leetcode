@@ -17,7 +17,7 @@ import '../assets/static/ProblemSet.css';
 import { IProblem } from "../types/type.js";
 import { Link as RouterLink } from 'react-router-dom'; 
 
-const BASE_URL = window.location.origin;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 interface problemSet extends Array<IProblem>{
     problem?:IProblem[]
