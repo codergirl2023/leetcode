@@ -1,4 +1,4 @@
-# LeetCode React - Local Development Setup
+# LeetCode - Local Development Setup
 
 To run the LeetCode React website locally, follow these steps:
 
