@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server/dist/server/index.js"
+    "start": "cd server && rm -rf public && mkdir public && cd ../../frontend && npm run build && cd ../backend/server && cp -r ../../frontend/dist/* public && node dist/server/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
