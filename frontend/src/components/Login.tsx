@@ -8,7 +8,7 @@ import axios from "axios";
 import '../assets/static/Login.css';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-
+console.log("BASE_URL =",BASE_URL);
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
