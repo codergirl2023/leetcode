@@ -6,11 +6,20 @@ import user from './routes/userServer';
 import problemSet from './routes/problemSetServer';
 import submissions from './routes/submissionsServer';
 import { connectToDB } from '../dbms/db';
-import path from 'path'
+import path from 'path';
+import cors from 'cors';
 const app = express();
 
 app.use(express.json());
-
+const corsOptions = {
+    origin: 'http://localhost:5173', // Replace with your allowed origin(s)
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
+  };
+  
+  app.use(cors(corsOptions));
+  
 const port = process.env.PORT;
 connectToDB();
 

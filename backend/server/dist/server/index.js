@@ -12,8 +12,16 @@ const problemSetServer_1 = __importDefault(require("./routes/problemSetServer"))
 const submissionsServer_1 = __importDefault(require("./routes/submissionsServer"));
 const db_1 = require("../dbms/db");
 const path_1 = __importDefault(require("path"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
+};
+app.use((0, cors_1.default)(corsOptions));
 const port = process_1.default.env.PORT;
 (0, db_1.connectToDB)();
 app.use('/users', userServer_1.default);

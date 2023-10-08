@@ -15,14 +15,11 @@ const UserSchema = new mongoose.Schema({
 
 export const User = mongoose.model<IUser>("User", UserSchema);
 
-
-
 export function searchRecord(query: Object) {
     const user = User.find(query);
     return user;
 }
 
 export function createRecord(newRecord: IUser) {
-
     User.insertMany(newRecord);
 }
